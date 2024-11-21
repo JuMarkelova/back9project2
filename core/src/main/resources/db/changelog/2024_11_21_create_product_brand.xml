@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="init db" author="Iuliia">
+        <sql>
+            CREATE TABLE IF NOT EXISTS brand (
+            id BIGSERIAL PRIMARY KEY,
+            name VARCHAR NOT NULL,
+            description VARCHAR
+            );
+
+            CREATE TABLE IF NOT EXISTS product (
+            id BIGSERIAL PRIMARY KEY,
+            name VARCHAR NOT NULL,
+            price NUMERIC(10, 2) NOT NULL,
+            brand_id BIGINT NOT NULL,
+            FOREIGN KEY (brand_id) REFERENCES brand (id)
+            );
+
+            INSERT INTO brand (name, description) VALUES
+            ('TechNova', 'Innovative technology solutions for everyday life'),
+            ('GreenEssence', 'Eco-friendly and sustainable products for a better planet'),
+            ('FashionPulse', 'Trendy and affordable fashion for all ages');
+
+            INSERT INTO product (name, price, brand_id) VALUES
+            ('SmartWatch X', 199.99, 1),
+            ('Eco-friendly Water Bottle', 15.49, 2),
+            ('Recycled Cotton Tote Bag', 9.99, 2),
+            ('Wireless Earbuds Pro', 129.99, 1),
+            ('Vintage Denim Jacket', 59.99, 3);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
