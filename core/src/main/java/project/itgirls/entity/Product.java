@@ -1,12 +1,26 @@
 package project.itgirls.entity;
 import java.util.Objects;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "products")
+
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private Double price;
+
+    @Column(name = "brand_id", nullable = false)
     private Long brandId;
 
+    // Конструкторы, геттеры, сеттеры, equals(), hashCode() и toString()
     public Product() {
     }
 
