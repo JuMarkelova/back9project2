@@ -32,12 +32,12 @@ public class BrandController {
     }
 
     @PostMapping("/brands/create")
-    BrandDto createBrand(@RequestBody @Valid BrandCreateDto brandCreateDto) {
+    BrandDto createBrand(@RequestBody @Valid BrandDto brandCreateDto) {
         return brandService.createBrand(brandCreateDto);
     }
 
     @PutMapping("/brands/update")
-    BrandDto updateBrand(@RequestBody @Valid BrandUpdateDto brandUpdateDto) {
+    BrandDto updateBrand(@RequestBody @Valid BrandDto brandUpdateDto) {
         return brandService.updateBrand(brandUpdateDto);
     }
 
