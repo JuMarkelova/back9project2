@@ -9,8 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Brands API", version = "2.0", description = "Brands Information"))
-@SecurityScheme(name = "site-users", scheme = "basic", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
+//@OpenAPIDefinition(info = @Info(title = "Brands API", version = "2.0", description = "Brands Information"))
+//@SecurityScheme(name = "site-users", scheme = "basic", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
