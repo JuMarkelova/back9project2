@@ -13,26 +13,27 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class BrandServiceImpl implements BrandService{
     private final BrandRepository brandRepository;
+    private final BrandMapper brandMapper;
 
     @Override
     public BrandDto getBrandById(Long id) {
         Brand brand = brandRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Brand was not found"));
-        return BrandMapper.INSTANCE.toDTO(brand);
+        return brandMapper.toDTO(brand);
     }
 
     @Override
     public BrandDto createBrand(BrandDto brandDto) {
         Brand brand = BrandMapper.INSTANCE.toEntity(brandDto);
         Brand savedBrand = brandRepository.save(brand);
-        return BrandMapper.INSTANCE.toDTO(savedBrand);
+        return brandMapper.toDTO(savedBrand);
     }
 
     @Override
     public List<BrandDto> getAllBrands() {
         List<Brand> brands= brandRepository.findAll();
         return brands.stream()
-                .map(BrandMapper.INSTANCE::toDTO)
+                .map(brandMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
@@ -43,7 +44,7 @@ public class BrandServiceImpl implements BrandService{
         brand.setName(brandDto.getName());
         brand.setDescription(brandDto.getDescription());
         Brand updatedBrand = brandRepository.save(brand);
-        return BrandMapper.INSTANCE.toDTO(updatedBrand);
+        return brandMapper.toDTO(updatedBrand);
     }
 
     @Override
