@@ -7,6 +7,7 @@ import ru.back.app.mapper.BrandMapper;
 import ru.back.app.repository.BrandRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -14,8 +15,10 @@ public class BrandServiceImpl implements BrandService{
     private final BrandRepository brandRepository;
 
     @Override
-    public BrandDto getBrandById(Long Id) {
-        return null;
+    public BrandDto getBrandById(Long id) {
+        Brand brand = brandRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Brand was not found"));
+        return BrandMapper.INSTANCE.toDTO(brand);
     }
 
     @Override
@@ -27,7 +30,10 @@ public class BrandServiceImpl implements BrandService{
 
     @Override
     public List<BrandDto> getAllBrands() {
-        return List.of();
+        List<Brand> brands= brandRepository.findAll();
+        return brands.stream()
+                .map(BrandMapper.INSTANCE::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -42,5 +48,6 @@ public class BrandServiceImpl implements BrandService{
 
     @Override
     public void deleteBrand(Long id) {
+        brandRepository.deleteById(id);
     }
 }
