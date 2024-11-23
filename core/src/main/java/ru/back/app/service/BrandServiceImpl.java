@@ -24,6 +24,13 @@ public class BrandServiceImpl implements BrandService{
     }
 
     @Override
+    public BrandDto getBrandByName(String name) {
+        Brand brand = brandRepository.findBrandByName(name)
+                .orElseThrow(() -> new RuntimeException("Brand was not found"));
+        return brandMapper.toDTO(brand);
+    }
+
+    @Override
     public BrandDto createBrand(BrandCreateDto brandCreateDto) {
         Brand brand = BrandMapper.INSTANCE.toEntity(brandCreateDto);
         Brand savedBrand = brandRepository.save(brand);
