@@ -6,11 +6,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.back.app.dto.BrandDto;
+import ru.back.app.service.BrandService;
 
 @RestController
 @RequiredArgsConstructor
-@SecurityRequirement(name = "site-users")
-
+//@SecurityRequirement(name = "site-users")
 public class BrandController {
 
     private final BrandService brandService; //todo
