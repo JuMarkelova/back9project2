@@ -7,8 +7,6 @@ import ru.back.app.entity.Product;
 
 @Mapper
 public interface ProductMapper {
-
-
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
     ProductDto productToProductDto(Product product);

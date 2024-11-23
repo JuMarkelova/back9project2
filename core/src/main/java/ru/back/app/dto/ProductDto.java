@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class ProductDto {
-
     private Long id;
     @Size(min = 2, max = 30)
     @NotBlank(message = "Please write the name")
