@@ -3,6 +3,7 @@ package ru.back.app.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.back.app.dto.BrandDto;
+import ru.back.app.mapper.BrandMapper;
 import ru.back.app.repository.BrandRepository;
 
 import java.util.List;
@@ -19,7 +20,9 @@ public class BrandServiceImpl implements BrandService{
 
     @Override
     public BrandDto createBrand(BrandDto brandDto) {
-        return null;
+        Brand brand = BrandMapper.INSTANCE.toEntity(brandDto);
+        Brand savedBrand = brandRepository.save(brand);
+        return BrandMapper.INSTANCE.toDTO(savedBrand);
     }
 
     @Override
@@ -29,7 +32,12 @@ public class BrandServiceImpl implements BrandService{
 
     @Override
     public BrandDto updateBrand(BrandDto brandDto) {
-        return null;
+        Brand brand = brandRepository.findById(brandDto.getId())
+                .orElseThrow(() -> new RuntimeException("Brand was not found"));
+        brand.setName(brandDto.getName());
+        brand.setDescription(brandDto.getDescription());
+        Brand updatedBrand = brandRepository.save(brand);
+        return BrandMapper.INSTANCE.toDTO(updatedBrand);
     }
 
     @Override
