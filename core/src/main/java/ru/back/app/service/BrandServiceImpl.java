@@ -6,7 +6,7 @@ import ru.back.app.dto.BrandCreateDto;
 import ru.back.app.dto.BrandDto;
 import ru.back.app.mapper.BrandMapper;
 import ru.back.app.repository.BrandRepository;
-
+import ru.back.app.entity.Brand;
 import java.util.List;
 import java.util.stream.Collectors;
 
