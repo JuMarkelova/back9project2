@@ -2,6 +2,7 @@ package ru.back.app.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import ru.back.app.dto.BrandCreateDto;
 import ru.back.app.dto.BrandDto;
 import ru.back.app.entity.Brand;
 
@@ -11,5 +12,6 @@ public interface BrandMapper {
 
     BrandDto toDTO(Brand brand);
     Brand toEntity(BrandDto brandDto);
+    Brand toEntity(BrandCreateDto brandCreateDto);
 }
 
