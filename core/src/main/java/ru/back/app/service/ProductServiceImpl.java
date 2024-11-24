@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
 
@@ -30,7 +30,9 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ProductDto createProduct(ProductDto productDto) {
-        return null;
+        Product product = productMapper.productDtoToProduct(productDto);
+        Product savedProduct = productRepository.save(product);
+        return productMapper.productToProductDto(savedProduct);
     }
 
     @Override
@@ -45,6 +47,6 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void deleteProduct(Long id) {
-
+        productRepository.deleteById(id);
     }
 }

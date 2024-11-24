@@ -4,15 +4,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.back.app.dto.BrandCreateDto;
 import ru.back.app.dto.BrandDto;
+import ru.back.app.entity.Brand;
 import ru.back.app.mapper.BrandMapper;
 import ru.back.app.repository.BrandRepository;
-import ru.back.app.entity.Brand;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class BrandServiceImpl implements BrandService{
+public class BrandServiceImpl implements BrandService {
     private final BrandRepository brandRepository;
     private final BrandMapper brandMapper;
 
@@ -32,14 +33,14 @@ public class BrandServiceImpl implements BrandService{
 
     @Override
     public BrandDto createBrand(BrandCreateDto brandCreateDto) {
-        Brand brand = BrandMapper.INSTANCE.toEntity(brandCreateDto);
+        Brand brand = brandMapper.toEntity(brandCreateDto);
         Brand savedBrand = brandRepository.save(brand);
         return brandMapper.toDTO(savedBrand);
     }
 
     @Override
     public List<BrandDto> getAllBrands() {
-        List<Brand> brands= brandRepository.findAll();
+        List<Brand> brands = brandRepository.findAll();
         return brands.stream()
                 .map(brandMapper::toDTO)
                 .collect(Collectors.toList());
