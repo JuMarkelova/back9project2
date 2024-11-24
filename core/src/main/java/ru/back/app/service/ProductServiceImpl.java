@@ -8,6 +8,7 @@ import ru.back.app.mapper.ProductMapper;
 import ru.back.app.repository.ProductRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,12 +38,21 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> getAllProducts() {
-        return List.of();
+        List<Product> products = productRepository.findAll();
+        return products.stream()
+                .map(productMapper::productToProductDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public ProductDto updateProduct(ProductDto productDto) {
-        return null;
+        Product product = productRepository.findById(productDto.getId())
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+        product.setName(productDto.getName());
+        product.setPrice(productDto.getPrice());
+        product.setBrandId(productDto.getBrandId());
+        Product updatedProduct = productRepository.save(product);
+        return productMapper.productToProductDto(updatedProduct);
     }
 
     @Override
