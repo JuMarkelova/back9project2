@@ -2,6 +2,7 @@ package ru.back.app.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.back.app.dto.ProductCreateDto;
 import ru.back.app.dto.ProductDto;
 import ru.back.app.entity.Product;
 import ru.back.app.mapper.ProductMapper;
@@ -30,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto createProduct(ProductDto productDto) {
-        Product product = productMapper.productDtoToProduct(productDto);
+    public ProductDto createProduct(ProductCreateDto productCreateDto) {
+        Product product = productMapper.productDtoToProduct(productCreateDto);
         Product savedProduct = productRepository.save(product);
         return productMapper.productToProductDto(savedProduct);
     }
