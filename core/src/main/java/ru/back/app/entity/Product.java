@@ -1,4 +1,4 @@
-package project.itgirls.entity;
+package ru.back.app.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
