@@ -2,6 +2,7 @@ package ru.back.app.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+import ru.back.app.dto.ProductCreateDto;
 import ru.back.app.dto.ProductDto;
 import ru.back.app.entity.Product;
 
@@ -10,7 +11,7 @@ public interface ProductMapper {
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
     ProductDto productToProductDto(Product product);
-
     Product productDtoToProduct(ProductDto productDto);
+    Product productDtoToProduct(ProductCreateDto productCreateDto);
 }
 
