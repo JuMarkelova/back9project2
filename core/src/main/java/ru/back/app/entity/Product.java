@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "product") // Исправлено имя таблицы
+@Table(name = "product")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -11,7 +11,6 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode
 @Builder
-
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +22,7 @@ public class Product {
     @Column(nullable = false)
     private Double price;
 
-    // Связь с Brand через @ManyToOne
     @ManyToOne
-    @JoinColumn(name = "brand_id", nullable = false) // Связываем с колонкой brand_id
+    @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 }

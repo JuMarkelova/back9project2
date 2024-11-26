@@ -15,7 +15,6 @@ import java.util.Set;
 @ToString
 @EqualsAndHashCode
 @Builder
-
 public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

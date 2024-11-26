@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.back.app.entity.Brand;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +19,5 @@ public class ProductDto {
     private String name;
     @NotBlank(message = "Please write the price")
     private Double price;
-    private Long brandId;
+    private Brand brand;
 }
