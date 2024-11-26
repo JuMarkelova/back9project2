@@ -1,23 +1,21 @@
 package ru.back.app.controller;
 
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.back.app.dto.ProductDto;
 import ru.back.app.service.ProductService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
-//@SecurityRequirement(name = "site-users")
 public class ProductController {
-    private final ProductService productService; //todo
+    private final ProductService productService;
 
     @GetMapping("/products")
-    String getProductsView(Model model) {
-        model.addAttribute("products", productService.getAllProducts());
-        return "products";
+    List<ProductDto> getAllProducts() {
+        return productService.getAllProducts();
     }
 
     @GetMapping("/products/{id}")

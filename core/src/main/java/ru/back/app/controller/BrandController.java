@@ -1,24 +1,22 @@
 package ru.back.app.controller;
 
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.back.app.dto.BrandDto;
 import ru.back.app.service.BrandService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
-//@SecurityRequirement(name = "site-users")
 public class BrandController {
 
-    private final BrandService brandService; //todo
+    private final BrandService brandService;
 
     @GetMapping("/brands")
-    String getBrandsView(Model model) {
-        model.addAttribute("brands", brandService.getAllBrands());
-        return "brands";
+    List<BrandDto> getAllBrands() {
+        return brandService.getAllBrands();
     }
 
     @GetMapping("/brands/{id}")
