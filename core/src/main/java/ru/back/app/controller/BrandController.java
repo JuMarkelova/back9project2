@@ -3,6 +3,7 @@ package ru.back.app.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ru.back.app.dto.BrandCreateDto;
 import ru.back.app.dto.BrandDto;
 import ru.back.app.service.BrandService;
 
@@ -30,7 +31,7 @@ public class BrandController {
     }
 
     @PostMapping("/brands/create")
-    BrandDto createBrand(@RequestBody @Valid BrandDto brandCreateDto) {
+    BrandDto createBrand(@RequestBody @Valid BrandCreateDto brandCreateDto) {
         return brandService.createBrand(brandCreateDto);
     }
 

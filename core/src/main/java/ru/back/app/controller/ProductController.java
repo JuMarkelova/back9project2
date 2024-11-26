@@ -3,6 +3,7 @@ package ru.back.app.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ru.back.app.dto.ProductCreateDto;
 import ru.back.app.dto.ProductDto;
 import ru.back.app.service.ProductService;
 
@@ -29,7 +30,7 @@ public class ProductController {
     }
 
     @PostMapping("/products/create")
-    ProductDto createProduct(@RequestBody @Valid ProductDto productCreateDto) {
+    ProductDto createProduct(@RequestBody @Valid ProductCreateDto productCreateDto) {
         return productService.createProduct(productCreateDto);
     }
 
