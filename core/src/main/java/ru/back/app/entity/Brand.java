@@ -26,6 +26,7 @@ public class Brand {
     @Column(length = 500)
     private String description;
 
-    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
     private Set<Product> products;
 }
