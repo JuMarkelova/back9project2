@@ -52,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new RuntimeException("Product not found"));
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
-        product.setBrandId(productDto.getBrandId());
+        product.setBrand(productDto.getBrand());
         Product updatedProduct = productRepository.save(product);
         return productMapper.productToProductDto(updatedProduct);
     }

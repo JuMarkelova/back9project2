@@ -15,7 +15,6 @@ import java.util.Set;
 @ToString
 @EqualsAndHashCode
 @Builder
-
 public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +26,6 @@ public class Brand {
     @Column(length = 500)
     private String description;
 
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
-    @ToString.Exclude
+    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
     private Set<Product> products;
 }
