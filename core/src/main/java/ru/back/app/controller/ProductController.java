@@ -19,14 +19,14 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/products/id/{id}")
     ProductDto getProductById(@PathVariable("id") Long id) {
         return productService.getProductById(id);
     }
 
-    @GetMapping("/products/{name}")
-    ProductDto getProductByName(@RequestParam("name") String name) {
-        return productService.getByName(name);
+    @GetMapping("/products/name")
+    ProductDto getProductByName(@RequestParam(value = "name", required = false) String name) {
+        return productService.getProductByName(name);
     }
 
     @PostMapping("/products/create")
