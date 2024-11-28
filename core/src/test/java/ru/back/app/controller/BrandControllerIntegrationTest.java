@@ -10,11 +10,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import ru.back.app.dto.BrandCreateDto;
 import ru.back.app.dto.BrandDto;
 
-import java.util.List;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.hamcrest.Matchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
