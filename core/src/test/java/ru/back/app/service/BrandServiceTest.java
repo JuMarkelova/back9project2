@@ -70,7 +70,7 @@ public class BrandServiceTest {
         when(brandRepository.findBrandByName(name)).thenReturn(Optional.of(brand));
         when(brandMapper.toDTO(brand)).thenReturn(brandDto);
 
-        BrandDto result = brandService.getByName(name);
+        BrandDto result = brandService.getBrandByName(name);
 
         verify(brandRepository, times(1)).findBrandByName(name);
         verify(brandMapper, times(1)).toDTO(brand);
@@ -85,7 +85,7 @@ public class BrandServiceTest {
 
         when(brandRepository.findBrandByName(name)).thenReturn(Optional.empty());
 
-        Assertions.assertThrows(RuntimeException.class, () -> brandService.getByName(name));
+        Assertions.assertThrows(RuntimeException.class, () -> brandService.getBrandByName(name));
         verify(brandRepository, times(1)).findBrandByName(name);
     }
 

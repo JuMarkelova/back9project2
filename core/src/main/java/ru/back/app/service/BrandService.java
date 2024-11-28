@@ -7,7 +7,7 @@ import java.util.List;
 public interface BrandService {
     BrandDto getBrandById(Long id);
 
-    BrandDto getByName(String name);
+    BrandDto getBrandByName(String name);
 
     BrandDto createBrand(BrandCreateDto brandCreateDto);
 

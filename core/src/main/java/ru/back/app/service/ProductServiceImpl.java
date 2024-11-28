@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto getByName(String name) {
+    public ProductDto getProductByName(String name) {
         Product product = productRepository.findProductByName(name)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
         return productMapper.productToProductDto(product);

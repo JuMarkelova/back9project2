@@ -60,7 +60,7 @@ public class ProductServiceTest {
         when(productRepository.findProductByName(name)).thenReturn(Optional.of(product));
         when(productMapper.productToProductDto(product)).thenReturn(productDto);
 
-        ProductDto result = productService.getByName(name);
+        ProductDto result = productService.getProductByName(name);
 
         verify(productRepository, times(1)).findProductByName(name);
         verify(productMapper, times(1)).productToProductDto(product);
@@ -73,7 +73,7 @@ public class ProductServiceTest {
 
         when(productRepository.findProductByName(name)).thenReturn(Optional.empty());
 
-        Assertions.assertThrows(RuntimeException.class, () -> productService.getByName(name));
+        Assertions.assertThrows(RuntimeException.class, () -> productService.getProductByName(name));
         verify(productRepository, times(1)).findProductByName(name);
     }
 

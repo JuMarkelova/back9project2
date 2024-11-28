@@ -20,14 +20,14 @@ public class BrandController {
         return brandService.getAllBrands();
     }
 
-    @GetMapping("/brands/{id}")
+    @GetMapping("/brands/id/{id}")
     BrandDto getBrandById(@PathVariable("id") Long id) {
         return brandService.getBrandById(id);
     }
 
-    @GetMapping("/brands/{name}")
-    BrandDto getBrandByName(@RequestParam("name") String name) {
-        return brandService.getByName(name);
+    @GetMapping("/brands/name")
+    BrandDto getBrandByName(@RequestParam(value = "name", required = false) String name) {
+        return brandService.getBrandByName(name);
     }
 
     @PostMapping("/brands/create")
