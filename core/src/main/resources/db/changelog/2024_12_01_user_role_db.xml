@@ -23,7 +23,7 @@
             );
 
             INSERT INTO user (name, surname, email, password, role_id) VALUES
-            ('John', 'Johnson', 'johnjohnson@example.com', 'password', 1),
+            ('John', 'Johnson', 'johnjohnson@example.com', 'password', 1);
 
             INSERT INTO role (name) VALUES
             ('ADMIN'),
