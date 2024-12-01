@@ -28,7 +28,7 @@
 
             INSERT INTO role (name) VALUES
             ('ADMIN'),
-            ('GUEST');
+            ('USER');
         </sql>
     </changeSet>
 </databaseChangeLog>
