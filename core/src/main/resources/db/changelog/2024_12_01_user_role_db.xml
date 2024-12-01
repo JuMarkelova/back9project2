@@ -24,7 +24,6 @@
 
             INSERT INTO user (name, surname, email, password, role_id) VALUES
             ('John', 'Johnson', 'johnjohnson@example.com', 'password', 1),
-            ('Frank', 'Black', 'frankblack@example.com', 'qwerty', 2);
 
             INSERT INTO role (name) VALUES
             ('ADMIN'),
