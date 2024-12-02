@@ -39,7 +39,7 @@ public class BrandController {
     public BrandDto updateBrand(@RequestBody @Valid BrandDto brandUpdateDto){
         return coreClient.updateBrand(brandUpdateDto);
     }
-    
+
     @DeleteMapping("/delete/{id}")
     public void deleteBrand(@PathVariable("id") Long id){
         coreClient.deleteBrand(id);
