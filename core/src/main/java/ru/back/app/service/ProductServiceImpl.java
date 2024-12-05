@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.back.app.dto.ProductCreateDto;
 import ru.back.app.dto.ProductDto;
 import ru.back.app.entity.Product;
+import ru.back.app.mapper.BrandMapper;
 import ru.back.app.mapper.ProductMapper;
 import ru.back.app.repository.ProductRepository;
 
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
+    private final BrandMapper brandMapper;
 
     @Override
     public ProductDto getProductById(Long id) {
@@ -52,7 +54,7 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new RuntimeException("Product not found"));
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
-        product.setBrand(productDto.getBrand());
+        product.setBrand(brandMapper.toEntity(productDto.getBrand()));
         Product updatedProduct = productRepository.save(product);
         return productMapper.productToProductDto(updatedProduct);
     }
