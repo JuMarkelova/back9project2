@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<databaseChangeLog-->
+<!--        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"-->
+<!--        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-->
+<!--                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">-->
 
-    <changeSet id="user db" author="Aleksandra">
-        <sql>
-            CREATE TABLE IF NOT EXISTS role (
-            id BIGSERIAL PRIMARY KEY,
-            name VARCHAR NOT NULL
-            );
+<!--    <changeSet id="user db" author="Aleksandra">-->
+<!--        <sql>-->
+<!--            CREATE TABLE IF NOT EXISTS role (-->
+<!--            id BIGSERIAL PRIMARY KEY,-->
+<!--            name VARCHAR NOT NULL-->
+<!--            );-->
 
-            CREATE TABLE IF NOT EXISTS user (
-            id BIGSERIAL PRIMARY KEY,
-            name VARCHAR NOT NULL,
-            surname VARCHAR NOT NULL,
-            email VARCHAR NOT NULL,
-            password VARCHAR NOT NULL,
-            role_id BIGINT NOT NULL,
-            FOREIGN KEY (role_id) REFERENCES role (id)
-            );
+<!--            CREATE TABLE IF NOT EXISTS user (-->
+<!--            id BIGSERIAL PRIMARY KEY,-->
+<!--            name VARCHAR NOT NULL,-->
+<!--            surname VARCHAR NOT NULL,-->
+<!--            email VARCHAR NOT NULL,-->
+<!--            password VARCHAR NOT NULL,-->
+<!--            role_id BIGINT NOT NULL,-->
+<!--            FOREIGN KEY (role_id) REFERENCES role (id)-->
+<!--            );-->
 
-            INSERT INTO user (name, surname, email, password, role_id) VALUES
-            ('John', 'Johnson', 'johnjohnson@example.com', 'password', 1);
+<!--            INSERT INTO user (name, surname, email, password, role_id) VALUES-->
+<!--            ('John', 'Johnson', 'johnjohnson@example.com', 'password', 1);-->
 
-            INSERT INTO role (name) VALUES
-            ('ADMIN'),
-            ('USER');
-        </sql>
-    </changeSet>
-</databaseChangeLog>
+<!--            INSERT INTO role (name) VALUES-->
+<!--            ('ADMIN'),-->
+<!--            ('USER');-->
+<!--        </sql>-->
+<!--    </changeSet>-->
+<!--</databaseChangeLog>-->
