@@ -1,4 +1,4 @@
-package ru.back.app.service;
+package ru.back.app.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
