@@ -14,21 +14,21 @@ public interface CoreClient {
     @GetMapping("/core/test")
     String testCoreConnection();
 
-    @GetMapping("/core/brands")
+    @GetMapping("/brands")
     List<WebBrandDto> getAllBrands();
 
-    @GetMapping("/core/brands/id/{id}")
+    @GetMapping("/brands/id/{id}")
     WebBrandDto getBrandById(@PathVariable("id") Long id);
 
-    @GetMapping ("core/brands/name")
+    @GetMapping ("/brands/name")
     WebBrandDto getBrandByName(@RequestParam(value = "name", required = false) String name);
 
-    @PostMapping("core/brands/create")
+    @PostMapping("/brands/create")
     WebBrandDto createBrand(@RequestBody @Valid WebBrandCreateDto webBrandCreateDto);
 
-    @PutMapping("core/brands/update")
+    @PutMapping("/brands/update")
     WebBrandDto updateBrand(@RequestBody @Valid WebBrandDto brandUpdateDto);
 
-    @DeleteMapping("core/brands/delete/{id}")
+    @DeleteMapping("/brands/delete/{id}")
     void deleteBrand(@PathVariable("id") Long id);
 }
