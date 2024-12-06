@@ -3,8 +3,8 @@ package ru.back.app.client;
 import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
-import ru.back.app.dto.BrandCreateDto;
-import ru.back.app.dto.BrandDto;
+import ru.back.app.dto.WebBrandCreateDto;
+import ru.back.app.dto.WebBrandDto;
 
 import java.util.List;
 
@@ -15,19 +15,19 @@ public interface CoreClient {
     String testCoreConnection();
 
     @GetMapping("/core/brands")
-    List<BrandDto> getAllBrands();
+    List<WebBrandDto> getAllBrands();
 
     @GetMapping("/core/brands/id/{id}")
-    BrandDto getBrandById(@PathVariable("id") Long id);
+    WebBrandDto getBrandById(@PathVariable("id") Long id);
 
     @GetMapping ("core/brands/name")
-    BrandDto getBrandByName(@RequestParam(value = "name", required = false) String name);
+    WebBrandDto getBrandByName(@RequestParam(value = "name", required = false) String name);
 
     @PostMapping("core/brands/create")
-    BrandDto createBrand(@RequestBody @Valid BrandCreateDto brandCreateDto);
+    WebBrandDto createBrand(@RequestBody @Valid WebBrandCreateDto webBrandCreateDto);
 
     @PutMapping("core/brands/update")
-    BrandDto updateBrand(@RequestBody @Valid BrandDto brandUpdateDto);
+    WebBrandDto updateBrand(@RequestBody @Valid WebBrandDto brandUpdateDto);
 
     @DeleteMapping("core/brands/delete/{id}")
     void deleteBrand(@PathVariable("id") Long id);
