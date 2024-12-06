@@ -22,5 +22,5 @@ public class ProductDto {
     @NotNull(message = "Please provide the price")
     @Min(value = 0, message = "Price must be greater than or equal to 0")
     private Double price;
-    private Brand brand;
+    private BrandDto brand;
 }
