@@ -1,5 +1,6 @@
 package ru.back.app.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.back.app.client.CoreClient;
@@ -29,12 +30,12 @@ public class ProductController {
     }
 
     @PostMapping("/create")
-    public WebProductDto createProduct(@RequestBody WebProductDto productDto) {
+    public WebProductDto createProduct(@RequestBody @Valid WebProductDto productDto) {
         return coreClient.createProduct(productDto);
     }
 
     @PutMapping("/update")
-    public WebProductDto updateProduct(@RequestBody WebProductDto productDto) {
+    public WebProductDto updateProduct(@RequestBody @Valid WebProductDto productDto) {
         return coreClient.updateProduct(productDto);
     }
 
