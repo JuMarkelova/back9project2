@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.back.app.entity.Brand;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,11 +15,14 @@ import ru.back.app.entity.Brand;
 @Builder
 public class ProductDto {
     private Long id;
+
     @Size(min = 2, max = 30)
     @NotBlank(message = "Please write the name")
     private String name;
+
     @NotNull(message = "Please provide the price")
     @Min(value = 0, message = "Price must be greater than or equal to 0")
     private Double price;
+
     private BrandDto brand;
 }

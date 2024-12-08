@@ -14,7 +14,6 @@ import java.util.Set;
 @ToString
 @Builder
 public class Role {
-
     @Id
     private Long id;
 

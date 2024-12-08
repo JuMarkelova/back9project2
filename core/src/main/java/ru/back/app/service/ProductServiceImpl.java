@@ -54,7 +54,9 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(() -> new RuntimeException("Product not found"));
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
-        product.setBrand(brandMapper.toEntity(productDto.getBrand()));
+        if (productDto.getBrand() != null) {
+            product.setBrand(brandMapper.toEntity(productDto.getBrand()));
+        }
         Product updatedProduct = productRepository.save(product);
         return productMapper.productToProductDto(updatedProduct);
     }

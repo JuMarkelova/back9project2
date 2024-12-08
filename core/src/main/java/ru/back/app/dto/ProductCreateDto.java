@@ -17,8 +17,10 @@ public class ProductCreateDto {
     @Size(min = 2, max = 30)
     @NotBlank(message = "Please write the name")
     private String name;
+
     @NotNull(message = "Please provide the price")
     @Min(value = 0, message = "Price must be greater than or equal to 0")
     private Double price;
+
     private Long brandId;
 }
