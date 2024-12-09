@@ -24,5 +24,5 @@ public class WebProductDto {
     @Min(value = 0, message = "Price must be greater than or equal to 0")
     private Double price;
 
-    private Long brandId;
+    private WebBrandDto brand;
 }
