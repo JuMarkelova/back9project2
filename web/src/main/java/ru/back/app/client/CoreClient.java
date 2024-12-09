@@ -33,22 +33,5 @@ public interface CoreClient {
     @DeleteMapping("/brands/delete/{id}")
     void deleteBrand(@PathVariable("id") Long id);
 
-    @GetMapping("/products")
-    List<WebProductDto> getAllProducts();
-
-    @GetMapping("/products/id/{id}")
-    WebProductDto getProductById(@PathVariable("id") Long id);
-
-    @GetMapping("/products/name")
-    WebProductDto getProductByName(@RequestParam(value = "name", required = false) String name);
-
-    @PostMapping("/products/create")
-    WebProductDto createProduct(@RequestBody @Valid WebProductDto productDto);
-
-    @PutMapping("/products/update")
-    WebProductDto updateProduct(@RequestBody @Valid WebProductDto productDto);
-
-    @DeleteMapping("/products/delete/{id}")
-    void deleteProduct(@PathVariable("id") Long id);
 
 }
