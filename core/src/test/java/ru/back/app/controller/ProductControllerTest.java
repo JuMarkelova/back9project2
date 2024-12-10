@@ -20,7 +20,7 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.*;
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -115,7 +115,7 @@ public class ProductControllerTest {
         when(service.createProduct(product)).thenReturn(productResponse);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/products/create")
-                        .contentType(APPLICATION_JSON_UTF8)
+                        .contentType(APPLICATION_JSON)
                         .content(mapper.writeValueAsString(product))
                 )
                 .andExpect(status().isOk())
@@ -135,7 +135,7 @@ public class ProductControllerTest {
         when(service.updateProduct(productDto)).thenReturn(productDto);
 
         mockMvc.perform(MockMvcRequestBuilders.put("/products/update")
-                        .contentType(APPLICATION_JSON_UTF8)
+                        .contentType(APPLICATION_JSON)
                         .content(mapper.writeValueAsString(productDto))
                 )
                 .andExpect(status().isOk())
