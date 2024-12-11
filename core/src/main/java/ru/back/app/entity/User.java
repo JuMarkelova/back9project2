@@ -11,17 +11,16 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, name = "name")
-    private String firstName;
+    private String name;
 
     @Column(nullable = false, name = "surname")
-    private String lastName;
+    private String surname;
 
     @Column(nullable = false)
     private String email;
