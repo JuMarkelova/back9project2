@@ -41,7 +41,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteProduct(@PathVariable Long id) {
+    public void deleteProduct(@PathVariable("id") Long id) {
         productFeignClient.deleteProduct(id);
     }
 }
