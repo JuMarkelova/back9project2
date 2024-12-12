@@ -5,7 +5,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 import ru.back.app.dto.WebBrandCreateDto;
 import ru.back.app.dto.WebBrandDto;
-import ru.back.app.dto.WebProductDto;
 
 import java.util.List;
 

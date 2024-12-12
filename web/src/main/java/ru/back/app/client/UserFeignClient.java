@@ -21,4 +21,7 @@ public interface UserFeignClient {
 
     @PostMapping("/auth/login")
     ResponseEntity<String> loginUser(@RequestBody LoginRequestDto loginRequestDto);
+
+    @PostMapping("/auth/validate")
+    ResponseEntity<UserResponseDto> validateUser(@RequestBody LoginRequestDto loginRequestDto);
 }
