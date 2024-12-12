@@ -20,11 +20,11 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, jakarta.servlet.http.HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        // Получаем токен из заголовка Authorization
+
         String token = request.getHeader("Authorization");
 
         if (token != null && token.startsWith("Bearer ")) {
-            token = token.substring(7); // Убираем "Bearer " из начала строки
+            token = token.substring(7);
             String username = jwtUtil.extractUsername(token);
 
             if (username != null && jwtUtil.validateToken(token, username)) {
