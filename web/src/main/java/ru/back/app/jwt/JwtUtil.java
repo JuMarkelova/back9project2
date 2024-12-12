@@ -2,9 +2,11 @@ package ru.back.app.jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.Claims;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 import java.util.function.Function;
-
+@Component
 public class JwtUtil {
 
     private String secretKey = "mySecretKey";
