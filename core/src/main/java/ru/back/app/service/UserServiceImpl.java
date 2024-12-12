@@ -80,6 +80,6 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("Invalid email or password");
         }
         log.info("Password matches, returning token");
-        return "mockedToken";
+        return "mockedToken"; //реальный токен должен возвращаться тут
     }
 }
