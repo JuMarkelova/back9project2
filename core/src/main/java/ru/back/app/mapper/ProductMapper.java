@@ -13,6 +13,7 @@ public interface ProductMapper {
 
     Product productDtoToProduct(ProductDto productDto);
 
+    @Mapping (source = "brandId", target = "brand")
     Product productDtoToProduct(ProductCreateDto productCreateDto);
 }
 
