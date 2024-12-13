@@ -9,7 +9,6 @@ import ru.back.app.client.UserFeignClient;
 import ru.back.app.dto.LoginRequestDto;
 import ru.back.app.dto.UserDto;
 import ru.back.app.dto.UserResponseDto;
-import ru.back.app.jwt.JwtUtil;
 
 @RestController
 @RequestMapping("/web")
@@ -18,7 +17,6 @@ import ru.back.app.jwt.JwtUtil;
 public class UserController {
 
     private final UserFeignClient userFeignClient;
-    private final JwtUtil jwtUtil;
 
     @PostMapping("/users/register")
     public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
@@ -46,27 +44,19 @@ public class UserController {
     @PostMapping("/users/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequestDto loginRequestDto) {
         try {
-            log.info("Sending login request to core via Feign with: {}", loginRequestDto);
-            UserResponseDto user = userFeignClient.validateUser(loginRequestDto).getBody();
+            log.info("Attempting to log in user via Feign with: {}", loginRequestDto);
+            ResponseEntity<String> response = userFeignClient.loginUser(loginRequestDto);
 
-            if (user != null) {
-                String token = jwtUtil.generateToken(user.getEmail());
-                return ResponseEntity.ok(token);
+            if (response.getStatusCode() == HttpStatus.OK) {
+                log.info("Login successful, token received: {}", response.getBody());
+                return ResponseEntity.ok(response.getBody());
             }
 
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+            log.warn("Login failed, core service returned: {}", response.getStatusCode());
+            return ResponseEntity.status(response.getStatusCode()).body("Login failed");
         } catch (Exception e) {
-            log.error("Error during login", e);
+            log.error("Error during login request to core", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
-    /* public ResponseEntity<String> loginUser(@RequestBody LoginRequestDto loginRequestDto) {
-        try {
-            log.info("Sending login request to core via Feign with: {}", loginRequestDto);
-            return ResponseEntity.ok(String.valueOf(userFeignClient.loginUser(loginRequestDto)));
-        } catch (Exception e) {
-            log.error("Error during login", e);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-        }
-    } */
 }
