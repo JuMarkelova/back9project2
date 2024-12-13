@@ -44,8 +44,7 @@ public class UserController {
     public ResponseEntity<String> loginUser(@RequestBody LoginRequestDto loginRequestDto) {
         try {
             log.info("Sending login request to core via Feign with: {}", loginRequestDto);
-            String token = userService.loginUser(loginRequestDto);
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(String.valueOf(userService.loginUser(loginRequestDto)));
         } catch (Exception e) {
             log.error("Error during login", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
