@@ -1,5 +1,6 @@
 package ru.back.app.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class UserController {
     private final UserFeignClient userFeignClient;
 
     @PostMapping("/users/register")
-    public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<?> registerUser(@RequestBody @Valid UserDto userDto) {
         try {
             ResponseEntity<UserResponseDto> response = userFeignClient.registerUser(userDto);
             return ResponseEntity.status(response.getStatusCode()).body(response.getBody());
@@ -31,7 +32,7 @@ public class UserController {
     @PutMapping("/users/{id}")
     public ResponseEntity<?> updateUser(
             @PathVariable("id") Long id,
-            @RequestBody UserDto userDto
+            @RequestBody @Valid UserDto userDto
     ) {
         try {
             UserResponseDto updatedUser = userFeignClient.updateUser(id, userDto).getBody();
@@ -42,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping("/users/login")
-    public ResponseEntity<?> loginUser(@RequestBody LoginRequestDto loginRequestDto) {
+    public ResponseEntity<?> loginUser(@RequestBody @Valid LoginRequestDto loginRequestDto) {
         try {
             log.info("Attempting to log in user via Feign with: {}", loginRequestDto);
             ResponseEntity<String> response = userFeignClient.loginUser(loginRequestDto);
