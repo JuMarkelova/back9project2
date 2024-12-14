@@ -19,5 +19,6 @@ public class UserDto {
     private String surname;
     private String email;
     private String password;
+    @JsonProperty("roleId")
     private Long roleId;
 }
