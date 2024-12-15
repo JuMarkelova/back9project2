@@ -1,5 +1,6 @@
 package ru.back.app.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/users/register")
-    public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<?> registerUser(@RequestBody @Valid UserDto userDto) {
         try {
             UserResponseDto responseDto = userService.registerUser(userDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
@@ -30,7 +31,7 @@ public class UserController {
     @PutMapping("/users/{id}")
     public ResponseEntity<UserResponseDto> updateUser(
             @PathVariable("id") Long id,
-            @RequestBody UserDto userDto
+            @RequestBody @Valid UserDto userDto
     ) {
         try {
             UserResponseDto updatedUser = userService.updateUser(id, userDto);
@@ -41,11 +42,10 @@ public class UserController {
     }
 
     @PostMapping("auth/login")
-    public ResponseEntity<String> loginUser(@RequestBody LoginRequestDto loginRequestDto) {
+    public ResponseEntity<String> loginUser(@RequestBody @Valid LoginRequestDto loginRequestDto) {
         try {
             log.info("Sending login request to core via Feign with: {}", loginRequestDto);
-            String token = userService.loginUser(loginRequestDto);
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(String.valueOf(userService.loginUser(loginRequestDto)));
         } catch (Exception e) {
             log.error("Error during login", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());

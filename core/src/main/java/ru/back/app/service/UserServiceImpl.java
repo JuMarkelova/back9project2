@@ -3,6 +3,7 @@ package ru.back.app.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.back.app.dto.LoginRequestDto;
@@ -10,6 +11,7 @@ import ru.back.app.dto.UserDto;
 import ru.back.app.dto.UserResponseDto;
 import ru.back.app.entity.Role;
 import ru.back.app.entity.User;
+import ru.back.app.jwt.JwtService;
 import ru.back.app.mapper.RoleMapper;
 import ru.back.app.mapper.UserMapper;
 import ru.back.app.repository.RoleRepository;
@@ -28,6 +30,7 @@ public class UserServiceImpl implements UserService {
     private final RoleMapper roleMapper;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @Override
     public UserResponseDto registerUser(UserDto userDto) {
@@ -71,15 +74,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String loginUser(LoginRequestDto loginRequestDto) {
+    public ResponseEntity<String> loginUser(LoginRequestDto loginRequestDto) {
         log.info("Received login request with email: {}, password: {}", loginRequestDto.getEmail(), loginRequestDto.getPassword());
 
-        User user = userRepository.findUserByEmail(loginRequestDto.getEmail()).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        User user = userRepository.findUserByEmail(loginRequestDto.getEmail())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
         log.info("User found: {}", user);
         if (!passwordEncoder.matches(loginRequestDto.getPassword(), user.getPassword())) {
             throw new IllegalArgumentException("Invalid email or password");
         }
         log.info("Password matches, returning token");
-        return "mockedToken";
+        String token = jwtService.generateToken(loginRequestDto.getEmail());
+        return ResponseEntity.ok(token);
     }
 }

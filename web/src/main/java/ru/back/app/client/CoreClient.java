@@ -31,4 +31,6 @@ public interface CoreClient {
 
     @DeleteMapping("/brands/delete/{id}")
     void deleteBrand(@PathVariable("id") Long id);
+
+
 }
